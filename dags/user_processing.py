@@ -33,7 +33,8 @@ with DAG('user_processing', start_date = datetime(2024,7,11),
 
     extract_user = SimpleHttpOperator(
         task_id = 'extract_user',
-        http_conn_id = 'api/',
+        http_conn_id = 'user_api',
+        endpoint = 'api/',
         method = 'GET',
         response_filter = lambda response:json.loads(response.text),
         log_response = True
